@@ -70,11 +70,8 @@ public class MyHashSet {
     public boolean add(Object obj) {
        if (contains(obj))
     	   return false;
-       ListNode node = buckets[whichBucket(obj)];
-       if (node != null)
-    	   buckets[whichBucket(obj)] = new ListNode(obj, node);
-       else
-    	   buckets[whichBucket(obj)] = new ListNode(obj, null);
+       int nodeNum = whichBucket(obj);
+       buckets[nodeNum] = new ListNode(obj, buckets[nodeNum]);
        if (currentLoadFactor() > loadFactorLimit)
     	   rehash(objCount*2);
        objCount++;
