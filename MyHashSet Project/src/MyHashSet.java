@@ -84,9 +84,9 @@ public class MyHashSet {
         	return false;
         ListNode n = buckets[whichBucket(obj)];
         if (n.getValue().equals(obj))
-        		n = n.getNext();
+        	buckets[whichBucket(obj)] = n.getNext();
         for (ListNode node = buckets[whichBucket(obj)]; node != null; node = node.getNext())
-        	if (node.getNext() != null && node.getNext().equals(obj))
+        	if (node.getNext() != null && node.getNext().getValue().equals(obj))
         		node.setNext(node.getNext().getNext());
         objCount--;
         return true;
@@ -98,6 +98,7 @@ public class MyHashSet {
     public void rehash(int newBucketCount) {
     	ListNode[] oldArr = Arrays.copyOf(buckets, buckets.length);
     	buckets = new ListNode[buckets.length*2];
+    	objCount = 0;
     	for (ListNode node : oldArr)
     		for (ListNode n = node; n != null; n = n.getNext())
     			add(n.getValue());
