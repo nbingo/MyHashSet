@@ -72,7 +72,7 @@ public class MyHashSet {
     	   return false;
        ListNode node = buckets[whichBucket(obj)];
        if (node != null)
-    	   node = new ListNode(obj, node);
+    	   buckets[whichBucket(obj)] = new ListNode(obj, node);
        else
     	   buckets[whichBucket(obj)] = new ListNode(obj, null);
        if (currentLoadFactor() > loadFactorLimit)
