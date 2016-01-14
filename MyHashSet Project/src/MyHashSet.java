@@ -72,9 +72,9 @@ public class MyHashSet {
     	   return false;
        int nodeNum = whichBucket(obj);
        buckets[nodeNum] = new ListNode(obj, buckets[nodeNum]);
+       objCount++;
        if (currentLoadFactor() > loadFactorLimit)
     	   rehash(objCount*2);
-       objCount++;
        return true;
     }
 
